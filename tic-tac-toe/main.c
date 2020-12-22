@@ -28,13 +28,14 @@ int main() {
     printf("\n");
 
     while (gameEnded == 0){
+
         int gameStatus = checkIfGameEnded();
 
         if(gameStatus == 0)
             getMove();
         printBoard();
     }
-    printf("Restart to play again");
+    printf("Restart to play again\n");
 
     return 0;
 }
@@ -89,12 +90,13 @@ void getMove(){
 int checkIfGameEnded() {
     // check if somebody won
     //horizontal
-    for (int i = 0; i < 3; ++i) {
-        if (board[i] == board[i + 1] && board[i+1] == board[i + 2] && board[i] != ' ')
+    for (int i = 0; i < 8; i+=3) {
+        if (board[i] == board[i + 1] && board[i + 1] == board[i + 2] && board[i] != ' ') {
             return getPlayerNumber(board[i]);
+        }
     }
     //vertical
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 3; i++)
         if (board[i] == board[i+3] && board[i+3] == board[i+6] && board[i] != ' ')
             return getPlayerNumber(board[i]);
 
